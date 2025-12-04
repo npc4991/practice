@@ -170,12 +170,19 @@ public:
         if (!head) return nullptr;
         if (n < 0 || n > size) return nullptr;
 
-        Node *temp = head;
-        for (int i=size-n; i>0; --i) {
-           temp = temp->next;
+        Node *mainPtr = head;
+        Node *refPtr = head;
+
+        for (int i=0; i<n; ++i) {
+            refPtr = refPtr->next;
         }
 
-        return temp;
+        while(refPtr) {
+            mainPtr = mainPtr->next;
+            refPtr = refPtr->next;
+        }
+
+        return mainPtr;
     }
 
     int getSize() const {
